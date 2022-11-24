@@ -1,0 +1,12 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 20vw;
+    background-color: #708AFF;
+    padding: 2rem;
+    z-index: 1;
+    height: 100vh
+}
+.close-button-container {}
+.close-button {}

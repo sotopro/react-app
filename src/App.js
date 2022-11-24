@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import Button from './components/button';
+import Sidebar from './components/sidebar';
 
 function App() {
   const onHandlerClick = () => {
@@ -8,6 +9,9 @@ function App() {
   }
   return (
     <div className="App">
+      <Sidebar>
+        <h2>Item List</h2>
+      </Sidebar>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
