@@ -1,9 +1,9 @@
 import React from "react";
 import './styles.css';
 
-const Button = ({text}) => {
+const Button = ({text, onHandlerClick}) => {
     return (
-        <button className="button-primary">{text}</button>
+        <button onClick={onHandlerClick} className="button-primary">{text}</button>
     )
 }
 

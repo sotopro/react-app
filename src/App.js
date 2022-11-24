@@ -3,6 +3,9 @@ import './App.css';
 import Button from './components/button';
 
 function App() {
+  const onHandlerClick = () => {
+    alert('Hello World');
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -10,7 +13,7 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <Button text='Click me' />
+        <Button text='Click me' onHandlerClick={onHandlerClick}/>
         <a
           className="App-link"
           href="https://reactjs.org"
