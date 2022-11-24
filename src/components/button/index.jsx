@@ -1,10 +1,18 @@
 import React from "react";
 import './styles.css';
 
-const Button = () => {
+const Button = ({text}) => {
     return (
-        <button className="button-primary">Click me</button>
+        <button className="button-primary">{text}</button>
     )
 }
+
+// class Button extends React.Component {
+//     render() {
+//         return (
+//             <button className="button-primary">{this.props.text}</button>
+//         )
+//     }
+// }
 
 export default Button;
