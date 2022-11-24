@@ -6,7 +6,22 @@
     background-color: #708AFF;
     padding: 2rem;
     z-index: 1;
-    height: 100vh
+    height: 100vh;
+    transition: all 0.5s ease-in-out;
 }
-.close-button-container {}
-.close-button {}
+.close-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+}
+.close-button {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+}

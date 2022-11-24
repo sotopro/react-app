@@ -1,15 +1,17 @@
+import React, { useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
 import Button from './components/button';
 import Sidebar from './components/sidebar';
 
 function App() {
+  const [isOpen, setOpen] = useState(false);
   const onHandlerClick = () => {
-    alert('Hello World');
+    setOpen(!isOpen);
   }
   return (
     <div className="App">
-      <Sidebar>
+      <Sidebar onClose={onHandlerClick} isOpen={isOpen}>
         <h2>Item List</h2>
       </Sidebar>
       <header className="App-header">
