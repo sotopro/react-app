@@ -3,31 +3,30 @@ import logo from './logo.svg';
 import './App.css';
 import Button from './components/button';
 import Sidebar from './components/sidebar';
+import { PRODUCTS } from './constants/data/products';
+import Card from './components/card';
 
 function App() {
-  const [isOpen, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [showProducts, setShowProducts] = useState(false);
   const onHandlerClick = () => {
-    setOpen(!isOpen);
+    setIsOpen(!isOpen);
+    setShowProducts(!showProducts);
   }
   return (
     <div className="App">
-      <Sidebar onClose={onHandlerClick} isOpen={isOpen}>
-        <h2>Item List</h2>
-      </Sidebar>
+      <Sidebar onClose={onHandlerClick} isOpen={isOpen} />
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
         <Button text='Click me' onHandlerClick={onHandlerClick}/>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        {showProducts ? (
+          <div className='products-container'>
+          {PRODUCTS.map((product) => (
+            <Card product={product} key={product.name} />
+          ))}
+        </div>
+        ) : null }
+
       </header>
     </div>
   );
