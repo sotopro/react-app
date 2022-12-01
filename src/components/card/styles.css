@@ -8,6 +8,7 @@
     padding: 1rem;
     max-width: 300px;
     min-height: 590px;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.2);
 }
 .card-image {
     width: 200px;
@@ -18,14 +19,20 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 95%;
 }
 .card-name {
+    width: 80%;
     font-size: 1.2rem;
     color: #212121;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .card-description {
     font-size: 0.9rem;
     color: #212121;
+    text-align: center;
 }
 .card-price {
     font-size: 1.5rem;
