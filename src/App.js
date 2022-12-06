@@ -6,26 +6,24 @@ import Sidebar from './components/sidebar';
 import Header from './components/header';
 import { PRODUCTS } from './constants/data/products';
 import Card from './components/card';
+import { useFetch } from './hooks/useFetch';
+import { URL_BASE, URL_ENDPOINTS } from './constants/services';
 
 function App() {
-  const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
+
+  const { data: user, error, loading } = useFetch(`${URL_BASE}${URL_ENDPOINTS.USERS}`);
 
   const onHandlerCart = () => {
     setIsOpen(!isOpen);
   }
 
-  useEffect(() => {
-    fetch('https://638f4aa89cbdb0dbe322a516.mockapi.io/users')
-      .then((response) => response.json())
-      .then((data) => setUser(data[0]));
-  }, [])
 
   return (
     <div className="container">
       <Sidebar onClose={onHandlerCart} isOpen={isOpen} />
-      <Header numbersOfItems={0} onHandlerCart={onHandlerCart} user={user} />
+      <Header numbersOfItems={0} onHandlerCart={onHandlerCart} user={user[0]} />
       <h1>Productos destacados</h1>
         <div className='products-container'>
         {PRODUCTS.map((product) => (
