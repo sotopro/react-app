@@ -8,6 +8,7 @@ import { PRODUCTS } from './constants/data/products';
 import Card from './components/card';
 
 function App() {
+  const [user, setUser] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
 
@@ -15,10 +16,16 @@ function App() {
     setIsOpen(!isOpen);
   }
 
+  useEffect(() => {
+    fetch('https://638f4aa89cbdb0dbe322a516.mockapi.io/users')
+      .then((response) => response.json())
+      .then((data) => setUser(data[0]));
+  }, [])
+
   return (
     <div className="container">
       <Sidebar onClose={onHandlerCart} isOpen={isOpen} />
-      <Header numbersOfItems={0} onHandlerCart={onHandlerCart} />
+      <Header numbersOfItems={0} onHandlerCart={onHandlerCart} user={user} />
       <h1>Productos destacados</h1>
         <div className='products-container'>
         {PRODUCTS.map((product) => (
