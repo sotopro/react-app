@@ -1,15 +1,12 @@
 import React, { useState, useEffect} from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Button from './components/button';
-import Sidebar from './components/sidebar';
-import Header from './components/header';
-import { PRODUCTS } from './constants/data/products';
-import Card from './components/card';
+import {Sidebar, Header} from './components'
 import { useFetch } from './hooks/useFetch';
+import { Link } from 'react-router-dom';
 import { URL_BASE, URL_ENDPOINTS } from './constants/services';
+import Router from './router';
+import './App.css';
 
-function App() {
+const App = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [showProducts, setShowProducts] = useState(false);
 
@@ -18,20 +15,17 @@ function App() {
   const onHandlerCart = () => {
     setIsOpen(!isOpen);
   }
-
-
   return (
     <div className="container">
-      <Sidebar onClose={onHandlerCart} isOpen={isOpen} />
+      <Sidebar onClose={onHandlerCart} isOpen={isOpen}>
+        <div  className='cart-container'>
+        <Link to='/cart' className='button-cart'>Go to Cart</Link>
+        </div>
+      </Sidebar>
       <Header numbersOfItems={0} onHandlerCart={onHandlerCart} user={user[0]} />
-      <h1>Productos destacados</h1>
-        <div className='products-container'>
-        {PRODUCTS.map((product) => (
-          <Card product={product} key={product.name} />
-        ))}
-      </div>
+      <Router />
     </div>
-  );
+  )
 }
 
 export default App;

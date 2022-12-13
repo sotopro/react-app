@@ -7,12 +7,5 @@ const Button = ({text, onHandlerClick}) => {
     )
 }
 
-// class Button extends React.Component {
-//     render() {
-//         return (
-//             <button className="button-primary">{this.props.text}</button>
-//         )
-//     }
-// }
 
 export default Button;

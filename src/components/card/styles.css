@@ -9,6 +9,13 @@
     max-width: 300px;
     min-height: 590px;
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
+.card:hover {
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    scale: 1.05;
 }
 .card-image {
     width: 200px;
