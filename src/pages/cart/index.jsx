@@ -4,7 +4,7 @@ import './styles.css'
 
 const Cart = () => {
     return (
-        <div className="container">
+        <div className="cart-container">
             <h1>Cart</h1>
             <div className="button-container">
             <Link to="/" className="button-cart">Home</Link>

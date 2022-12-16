@@ -4,15 +4,15 @@
     flex-direction: column;
     align-items: center;
     background-color: #F3ECFE;
-    height: max-content;
 }
 .cart-container {
     display: flex;
     flex-direction: column;
     flex: 1;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     margin: 1rem 0;
+    height: 88%;
 }
 .button-cart {
     cursor: pointer;

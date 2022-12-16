@@ -24,7 +24,6 @@ const Home = () => {
       const scrollTop = window.pageYOffset;
       const winHeight = window.innerHeight;
       const docHeight = getDocHeight();
-      console.log('docHeight', docHeight, 'winHeight', winHeight)
       const totalDocScrollLength = docHeight - winHeight;
 
       const scrollPosition = Math.floor(scrollTop / totalDocScrollLength * 100);
@@ -43,7 +42,7 @@ const Home = () => {
   }, [])
 
   return (
-    <div className="container">
+    <div className="home-container">
       <Progress scroll={scrollPosition}/>
       <h1>Productos destacados</h1>
         <div className='products-container'>

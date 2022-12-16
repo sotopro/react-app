@@ -59,3 +59,8 @@
     font-size: 0.7rem;
     font-weight: bold;
 }
+
+.link-logo {
+    text-decoration: none;
+    color: #000;
+}

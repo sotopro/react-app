@@ -12,22 +12,41 @@
     transition: all 0.2s ease-in-out;
 }
 
+.cardMax {
+    background-color: #fff;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 0.5rem;
+    padding: 1rem;
+    max-width: 1200px;
+    width: 80%;
+    min-height: 590px;
+    box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.2);
+    transition: all 0.2s ease-in-out;
+}
+
 .card:hover {
     box-shadow: 0 1px 1.5px 0 rgba(0, 0, 0, 0.5);
     cursor: pointer;
     scale: 1.05;
 }
 .card-image {
-    width: 200px;
-    height: 200px;
+    display: flex;
+    flex: 0.25;
+    width: 300px;
+    height: 300px;
 }
 .card-content {
     display: flex;
+    flex: 0.6;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     width: 95%;
 }
+
 .card-name {
     width: 80%;
     font-size: 1.2rem;
@@ -39,7 +58,7 @@
 .card-description {
     font-size: 0.9rem;
     color: #212121;
-    text-align: center;
+    /* text-align: center; */
 }
 .card-price {
     font-size: 1.5rem;
@@ -52,6 +71,7 @@
 }
 .card-button-container {
     display: flex;
+    flex: 0.15;
     justify-content: center;
     align-items: center;
     padding: 1rem;
@@ -65,6 +85,17 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.card-button-minus:hover {
+    background-color: #212121;
+    color: #fff;
+}
+
+.card-button-minus:disabled {
+    background-color: #eee;
+    color: #ffffff;
+    cursor: not-allowed;
 }
 input {
     text-align: center;
@@ -86,4 +117,16 @@ input {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.card-button-plus:hover {
+    background-color: #212121;
+    color: #fff;
+}
+
+.card-button-plus:disabled {
+    background-color: #eee;
+    color: #ffffff;
+    cursor: not-allowed;
 }

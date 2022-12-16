@@ -1,11 +1,13 @@
 import React from "react";
 import './styles.css'
+import { Link } from "react-router-dom";
 
 const Header = ({ numbersOfItems = 0, onHandlerCart, user}) => {
     return (
         <div className="header-menu">
             <div className="header-menu-logo">
-                <h2 className="header-logo">DS🐢</h2>
+            <Link to='/' className='link-logo'><h2 className="header-logo">DS🐢</h2></Link>
+                
             </div>
             <div className="header-menu-cart">
                 <div className="header-menu-avatar-container">
