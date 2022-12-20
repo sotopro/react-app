@@ -25,3 +25,32 @@
     font-size: 1.2rem;
     font-weight: bold;
 }
+
+.cart-container {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 1rem 0;
+    height: 88%;
+}
+.button-cart {
+    cursor: pointer;
+    background-color: #f0f0f0;
+    border: 1px solid #212121;
+    padding: 1.2rem;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    color: #708AFF;
+    border-radius: 5px;
+    transition: all 0.2s ease-in-out;
+}
+
+.button-cart:hover {
+    background-color: rgba(0, 0, 0, 0.7)
+}
