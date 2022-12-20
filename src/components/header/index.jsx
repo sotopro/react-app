@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext} from "react";
 import './styles.css'
 import { Link } from "react-router-dom";
+import { CartContext } from "../../context";
 
-const Header = ({ numbersOfItems = 0, onHandlerCart, user}) => {
+const Header = ({ onHandlerCart, user}) => {
+    const { cart } = useContext(CartContext);
     return (
         <div className="header-menu">
             <div className="header-menu-logo">
@@ -16,7 +18,7 @@ const Header = ({ numbersOfItems = 0, onHandlerCart, user}) => {
                 <div onClick={onHandlerCart}>
                 <img className="header-menu-cart-image"  src="https://cdn-icons-png.flaticon.com/512/834/834781.png" alt="cart"/>
                 <div className="header-menu-cart-number-container">
-                    <span className="header-menu-cart-number">{numbersOfItems}</span>
+                    <span className="header-menu-cart-number">{cart.length}</span>
                 </div>
                 </div>
             </div>
