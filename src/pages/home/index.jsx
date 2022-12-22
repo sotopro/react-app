@@ -6,6 +6,7 @@ import { Card, Loader, Progress} from '../../components'
 
 
 const Home = () => {
+  const [loading, setLoading] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
   const navigate = useNavigate();
   const onHandlerSelect = (product) => {  
@@ -39,18 +40,32 @@ const Home = () => {
     return () => {
       document.removeEventListener('scroll', handleScroll);
     }
-  }, [])
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+  }, []);
 
   return (
     <div className="home-container">
       <Progress scroll={scrollPosition}/>
-      <h1>Productos destacados</h1>
-        <Loader />
-        <div className='products-container'>
-        {PRODUCTS.map((product) => (
-          <Card product={product} key={product.id} onSelect={onHandlerSelect}/>
-        ))}
-      </div>
+      {loading ? (
+        <div className='loading-container'>
+          <Loader />
+        </div>
+      ) : (
+        <>
+          <h1>Productos destacados</h1>
+          <div className='products-container'>
+          {PRODUCTS.map((product) => (
+            <Card product={product} key={product.id} onSelect={onHandlerSelect}/>
+          ))}
+          </div>
+        </>
+      )}
+      
     </div>
   );
 }
