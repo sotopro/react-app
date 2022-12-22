@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import { PRODUCTS } from '../../constants/data/products';
-import { Card, Progress} from '../../components'
+import { Card, Loader, Progress} from '../../components'
 
 
 const Home = () => {
@@ -45,6 +45,7 @@ const Home = () => {
     <div className="home-container">
       <Progress scroll={scrollPosition}/>
       <h1>Productos destacados</h1>
+        <Loader />
         <div className='products-container'>
         {PRODUCTS.map((product) => (
           <Card product={product} key={product.id} onSelect={onHandlerSelect}/>
