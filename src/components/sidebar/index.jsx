@@ -5,7 +5,7 @@ import { CartContext } from "../../context";
 import CartItem from "../cart-item";
 
 const Sidebar = ({children, onClose, isOpen}) => {
-    const { cart } = useContext(CartContext);
+    const { cart, total, onRemoveItem } = useContext(CartContext);
     return (
         <div 
         className="sidebar"
@@ -21,9 +21,11 @@ const Sidebar = ({children, onClose, isOpen}) => {
                 <p className='empty-cart'>Your cart is empty</p>
                 ) : (
                     cart.map((item) => (
-                        <CartItem key={item.id} {...item} />
+                        <CartItem key={item.id} {...item} onRemoveItem={onRemoveItem} />
                     )
                 ))}
+                <p>Total:</p>
+                <h2>${total}</h2>
             <Link to='/cart' className='button-cart'>Go to Cart</Link>
             </div>
         </div>
