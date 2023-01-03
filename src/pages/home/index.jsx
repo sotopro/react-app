@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
-import { PRODUCTS } from '../../constants/data/products';
+// import { PRODUCTS } from '../../constants/data/products';
 import { Card, Loader, Progress} from '../../components'
+import {  getFirestore, collection, getDocs, query, where, limit} from 'firebase/firestore'
 
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
+  const [products, setProducts] = useState([]);
   const navigate = useNavigate();
   const onHandlerSelect = (product) => {  
     navigate(`/product/${product.id}`, { state: product})
@@ -43,9 +45,42 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 2000);
+    setLoading(true);
+    const db = getFirestore();
+    // const product = doc(db, 'products', '8GV4Q3nQuAaihkPEcCkU');
+    // getDoc(product)
+    //   .then((snapshot) => {
+    //     if(snapshot.exists()) {
+    //       console.log(snapshot.data())
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   });
+
+    const q = query(
+      collection(db, 'products'), 
+      where('categoryId', '==', '1'),
+      limit(10)
+      );
+
+    // const products = collection(db, 'products');
+    getDocs(q)
+      .then((snapshot) => {
+        if(snapshot.size === 0) {
+          console.log('No hay resultados');
+          setProducts([]);
+        } else {
+          const result = snapshot.docs.map((doc) => (doc.data()))
+          setProducts(result);
+        }
+      })
+      .catch((error) => {
+        console.log(error)
+      })
+      .finally(() => {
+        setLoading(false);
+      })
   }, []);
 
   return (
@@ -59,7 +94,7 @@ const Home = () => {
         <>
           <h1>Productos destacados</h1>
           <div className='products-container'>
-          {PRODUCTS.map((product) => (
+          {products.map((product) => (
             <Card product={product} key={product.id} onSelect={onHandlerSelect}/>
           ))}
           </div>
