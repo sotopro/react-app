@@ -14,7 +14,7 @@
 .cart-item-image {
     width: 100px;
     height: 100px;
-    background-color: #fff;
+    background-color: #212121;
     border-radius: 5px;
 }
 .cart-item-details {
@@ -24,7 +24,7 @@
 }
 .cart-item-name {
     font-size: 1rem;
-    color: #fff;
+    color: #212121;
     font-weight: 600;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -33,12 +33,12 @@
 }
 .cart-item-price {
     font-size: 1.2rem;
-    color: #fff;
+    color: #212121;
     font-weight: bold;
 }
 .cart-item-quantity {
     font-size: 0.9rem;
-    color: #fff;
+    color: #212121;
 }
 .cart-item-actions {
     display: flex;

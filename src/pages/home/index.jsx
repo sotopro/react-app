@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import './styles.css';
 import { useNavigate } from 'react-router-dom';
-// import { PRODUCTS } from '../../constants/data/products';
 import { Card, Loader, Progress} from '../../components'
+import { CartContext } from "../../context";
+
 import {  getFirestore, collection, getDocs, query, where, limit} from 'firebase/firestore'
 
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
   const [scrollPosition, setScrollPosition] = useState(0);
-  const [products, setProducts] = useState([]);
+
+  const { products, setProducts} = useContext(CartContext);
   const navigate = useNavigate();
   const onHandlerSelect = (product) => {  
-    navigate(`/product/${product.id}`, { state: product})
+    navigate(`/product/${product.id}`)
   }
+
 
   useEffect(() => {
     const getDocHeight = () => {
@@ -60,7 +63,6 @@ const Home = () => {
 
     const q = query(
       collection(db, 'products'), 
-      where('categoryId', '==', '1'),
       limit(10)
       );
 
