@@ -1,13 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { CartContext } from "../../context";
 import { CartItem } from "../../components";
 import './styles.css'
-import { addDoc, collection, getFirestore } from "firebase/firestore";
+import { firebaseServices } from "../../services";
+
+const { createOrder} = firebaseServices;
 
 const Cart = () => {
     const { cart, total } = useContext(CartContext);
-    const onHandlerOrder = () => {
+    const [orderResult, setOrderResult] = useState();
+    const onHandlerOrder = async () => {
         const newOrder = {
             buyer: {
                 name: 'Juan',
@@ -37,17 +40,11 @@ const Cart = () => {
             },
             total: total,
         }
-        const db = getFirestore();
-        const ordersCollection = collection(db, 'orders');
-
-        addDoc(ordersCollection, newOrder)
-            .then((docRef) => {
-                console.log(docRef)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        const result = await createOrder(newOrder);
+        setOrderResult(result);
     }
+
+    console.log('orderResult', orderResult);
     return (
         <div className="cart">
             <h1>Cart</h1>

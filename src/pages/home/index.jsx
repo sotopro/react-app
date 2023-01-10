@@ -3,9 +3,9 @@ import './styles.css';
 import { useNavigate } from 'react-router-dom';
 import { Card, Loader, Progress, FilterMenuItem} from '../../components'
 import { CartContext } from "../../context";
+import { firebaseServices } from '../../services';
 
-import {  getFirestore, collection, getDocs, query, where, limit} from 'firebase/firestore'
-
+const { getProducts, getCategories, getProductsByCategory } = firebaseServices
 
 const Home = () => {
   const [loading, setLoading] = useState(true);
@@ -48,75 +48,26 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
-    setLoading(true);
-    const db = getFirestore();
-    const q = query(
-      collection(db, 'products'), 
-      limit(10)
-      );
-
-    const qcategories = query(
-      collection(db, 'categories'),
-      limit(10)
-    );
-
-    getDocs(q)
-      .then((snapshot) => {
-        if(snapshot.size === 0) {
-          console.log('No hay resultados');
-          setProducts([]);
-        } else {
-          const result = snapshot.docs.map((doc) => (doc.data()))
-          setProducts(result);
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      });
-
-    getDocs(qcategories)
-      .then((snapshot) => {
-        if(snapshot.size === 0) {
-          console.log('No hay resultados');
-          setCategories([]);
-        } else {
-          const result = snapshot.docs.map((doc) => (doc.data()))
-          setCategories(result);
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-      .finally(() => {
-        setLoading(false);
-      })
+    const getData = async () => {
+      try {
+        setLoading(true);
+        const allProducts = await getProducts();
+        const allCategories = await getCategories();
+        setProducts(allProducts);
+        setCategories(allCategories);
+      } catch (error) {
+        console.log(error);
+      }
+    finally {
+      setLoading(false);
+    }
+  }
+    getData();
   }, []);
 
-  const onFilter = (id) => {
-    setLoading(true);
-    const db = getFirestore();
-    const q = query(
-      collection(db, 'products'),
-      where('categoryId', '==', id),
-      limit(10)
-    );
-
-    getDocs(q)
-      .then((snapshot) => {
-        if(snapshot.size === 0){
-          console.log('No hay resultados');
-          setProducts([]);
-        } else {
-          const result = snapshot.docs.map((doc) => (doc.data()))
-          setProducts(result);
-        }
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-      .finally(() => {
-        setLoading(false);
-      })
+  const onFilter = async (id) => {
+    const filterByCategory = await getProductsByCategory(id);
+    setProducts(filterByCategory);
   };
 
   return (

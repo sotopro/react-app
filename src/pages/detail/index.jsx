@@ -4,7 +4,9 @@ import { Link, useParams } from "react-router-dom";
 import { Card } from "../../components";
 import { CartContext } from "../../context";
 import { collection, getDocs, getFirestore, query, where } from "firebase/firestore";
+import { firebaseServices } from "../../services";
 
+const { getProductById } = firebaseServices;
 const Detail = () => {
     const [product, setProduct] = useState(null);
     const { id } = useParams() || {};
@@ -12,22 +14,13 @@ const Detail = () => {
     const { onDecreaseItem, onIncreaseItem, getItemQuantity, products, setProducts} = useContext(CartContext);
 
     useEffect(() => {
-        const db = getFirestore();
-        const q = query(
-            collection(db, 'products'), 
-            where('id', '==', id),
-            );
-        getDocs(q)
-            .then((snapshot) => {
-                snapshot.forEach((doc) => {
-                    setProduct(doc.data())
-                })
-            })
-            .catch((error) => {
-                console.log(error)
+        getProductById(id)
+            .then((product) => {
+                setProduct(product[0]);
             })
     }, [id])
 
+    console.log('products', product)
     useEffect(() => {
         if(products.length === 0) {
             const db = getFirestore();
