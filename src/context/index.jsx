@@ -15,6 +15,7 @@ export const CartContext = createContext(initialState);
 
 export const CartProvider = ({ children }) => {
     const [products, setProducts] = useState([]);
+    const [categories, setCategories] = useState([]);
     const [cart, setCart] = useState([]);
     
     const onDecreaseItem = (id) => {
@@ -70,7 +71,7 @@ export const CartProvider = ({ children }) => {
     }
 
     return (
-        <CartContext.Provider value={{ cart, setCart, onDecreaseItem, onIncreaseItem, getItemQuantity, onRemoveItem, total, products, setProducts }}>
+        <CartContext.Provider value={{ cart, setCart, onDecreaseItem, onIncreaseItem, getItemQuantity, onRemoveItem, total, products, setProducts}}>
             {children}
         </CartContext.Provider>
     )
